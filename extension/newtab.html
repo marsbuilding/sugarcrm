@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-text">
+                <div class="text-line">
+                    <div class="word" data-delay="0">BECOMING</div>
+                    <div class="word" data-delay="800">MY</div>
+                    <div class="word" data-delay="1600">OWN</div>
+                </div>
+                <div class="word sugar-word" data-delay="2400">
+                    <img src="sugar-logo-new.png" alt="Sugar" class="sugar-logo">
+                </div>
+            </div>
+            <div class="floating-icons">
+                <img src="cash icon.png" alt="Cash" class="floating-icon cash-icon">
+                <img src="heart-icon.png" alt="Heart" class="floating-icon heart-icon">
+            </div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-item active" data-tooltip="Home" data-view="home">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    <span class="sidebar-text">Home</span>
+                </div>
+                <div class="sidebar-item" data-tooltip="Coach" onclick="window.open('https://www.linkedin.com/in/marsnegrette', '_blank')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    <span class="sidebar-text">Coach</span>
+                </div>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="sidebar-item" data-tooltip="Community" onclick="window.open('https://wa.me/message/UXKTKH5YJ5O7P1', '_blank')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="m22 21-3-3"/>
+                    </svg>
+                    <span class="sidebar-text">Community</span>
+                </div>
+                <div class="sidebar-item" id="themeToggle" data-tooltip="Toggle Theme">
+                    <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <span class="sidebar-text">Theme</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Home View -->
+            <div class="view home-view active" id="homeView">
+                <div class="content-wrapper">
+                    <div class="left-content">
+                        
+                        <!-- Search and Controls -->
+                        <div class="controls-section">
+                            <div class="controls-left">
+                                <div class="search-container">
+                                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="11" cy="11" r="8"/>
+                                        <path d="m21 21-4.35-4.35"/>
+                                    </svg>
+                                    <input type="text" class="search-input" id="searchInput" placeholder="Search Deals…">
+                                </div>
+                                <div class="toggle-container">
+                                    <label class="toggle-label">
+                                        <input type="checkbox" id="hideClosedDeals" checked>
+                                        <span class="toggle-slider"></span>
+                                        <span class="toggle-text">Hide Won/Lost</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="controls-right">
+                                <button class="new-deal-btn" id="newDealBtn">
+                                    <img src="cash icon.png" alt="New Deal" class="logo-hover">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-pills">
+                            <button class="filter-pill active" data-filter="">All Funnels</button>
+                            <button class="filter-pill" data-filter="Sales">Sales</button>
+                            <button class="filter-pill" data-filter="Partnerships">Partnerships</button>
+                            <button class="filter-pill" data-filter="Advisors">Advisors</button>
+                            <button class="filter-pill" data-filter="Creators">Creators</button>
+                            <button class="filter-pill" data-filter="Press">Press</button>
+                            <button class="filter-pill" data-filter="Next Job">Next Job</button>
+                        </div>
+                        
+                        <main class="main">
+                            <div class="deals-list" id="dealsList">
+                                <!-- Deals will be populated here -->
+                            </div>
+                            
+                            <div class="empty-state" id="emptyState">
+                                <p>No deals just yet… give that bulk of money 💸💚 a click to start the magic!</p>
+                            </div>
+                        </main>
+                    </div>
+
+                    <!-- Motivation Panel -->
+                    <div class="motivation-panel" id="motivationPanel">
+                        <div class="motivation-content">
+                            <!-- Sugar Logo above sales tip -->
+                            <div class="panel-logo">
+                                <img src="sugar-logo-new.png" alt="Sugar" class="logo-hover">
+                            </div>
+                            <div class="motivation-quote" id="motivationQuote"></div>
+                            <div class="sales-tip" id="salesTip">
+                                <div class="sales-tip-title" id="salesTipTitle"></div>
+                                <div id="salesTipText"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Deal Form Modal -->
+        <div class="modal" id="dealModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">New Deal</h2>
+                    <button class="close-btn" id="closeBtn">×</button>
+                </div>
+                <form class="deal-form" id="dealForm">
+                    <div class="form-group">
+                        <label for="dealName">Deal Name</label>
+                        <input type="text" id="dealName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dealCompany">Company</label>
+                        <input type="text" id="dealCompany">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dealContactName">Contact Name</label>
+                        <input type="text" id="dealContactName">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dealSize">Deal Size ($)</label>
+                        <input type="number" id="dealSize" min="0" step="0.01">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dealStage">Stage</label>
+                            <select id="dealStage">
+                                <option value="Lead">Lead</option>
+                                <option value="Contacted">Contacted</option>
+                                <option value="Qualified">Qualified</option>
+                                <option value="Won">Won</option>
+                                <option value="Lost">Lost</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dealFunnel">Funnel</label>
+                            <select id="dealFunnel">
+                                <option value="Sales">Sales</option>
+                                <option value="Partnerships">Partnerships</option>
+                                <option value="Advisors">Advisors</option>
+                                <option value="Creators">Creators</option>
+                                <option value="Press">Press</option>
+                                <option value="Next Job">Next Job</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dealNotes">Notes</label>
+                        <textarea id="dealNotes" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dealTasks">Tasks</label>
+                        <div class="task-input-container">
+                            <input type="text" id="taskInput" class="task-input" placeholder="Add a task...">
+                            <button type="button" id="addTaskBtn" class="add-task-btn">Add</button>
+                        </div>
+                        <div class="task-list" id="taskList">
+                            <!-- Tasks will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+                        <button type="submit" class="save-btn" id="saveBtn">Save</button>
+                        <button type="button" class="delete-btn" id="deleteBtn" style="display: none;">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="newtab.js"></script>
+</body>
+</html>
