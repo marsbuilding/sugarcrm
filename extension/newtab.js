@@ -211,19 +211,8 @@ class CRMManager {
     }
 
     showLoadingScreen() {
-        const words = document.querySelectorAll('.word');
         const progressFill = document.getElementById('progressFill');
         
-        // Animate words
-        words.forEach((word, index) => {
-            const delay = parseInt(word.dataset.delay);
-            setTimeout(() => {
-                word.style.animationDelay = '0ms';
-                word.style.opacity = '1';
-                word.style.transform = 'translateY(0) scale(1)';
-            }, delay);
-        });
-
         // Animate progress bar
         let progress = 0;
         const progressInterval = setInterval(() => {
