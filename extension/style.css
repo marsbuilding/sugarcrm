@@ -22,7 +22,7 @@
 }
 
 [data-theme="dark"] {
-    --bg-primary: #000000;
+    --bg-primary: #121212;
     --bg-secondary: #1a1a1a;
     --bg-tertiary: #1f1f1f;
     --text-primary: #f2f2f2;
@@ -34,7 +34,6 @@
     --accent-green: #c2e347;
     --shadow-light: rgba(255, 255, 255, 0.1);
     --shadow-medium: rgba(255, 255, 255, 0.04);
-    --gradient-border: linear-gradient(45deg, #FF5CA1, #FFA84C, #FFF347);
 }
 
 body {
@@ -107,39 +106,61 @@ body {
     margin-bottom: 60px;
 }
 
-.loading-logo {
+.loading-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.text-line {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.word {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--text-primary);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: wordReveal 0.6s ease-out forwards;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: -1px;
+    transition: color 0.3s ease-in-out;
+}
+
+.sugar-word {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.loading-sugar-logo {
-    width: 400px;
-    height: auto;
-    object-fit: contain;
-    opacity: 0;
-    transform: scale(0.8);
-    animation: bounceIn 0.8s ease-out 0.5s forwards;
+.sugar-logo {
+    height: 384px; /* 8x larger than current 48px */
+    width: auto;
 }
 
-@keyframes bounceIn {
+@keyframes wordReveal {
     0% {
         opacity: 0;
-        transform: scale(0.8);
+        transform: translateY(20px) scale(0.8);
+    }
+    25% {
+        transform: translateY(-10px) scale(1.1);
     }
     50% {
-        opacity: 1;
-        transform: scale(1.05);
+        transform: translateY(5px) scale(1.05);
     }
-    70% {
-        transform: scale(0.98);
-    }
-    85% {
-        transform: scale(1.02);
+    75% {
+        transform: translateY(-3px) scale(1.02);
     }
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0) scale(1);
     }
 }
 
