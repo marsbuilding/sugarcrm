@@ -477,18 +477,6 @@ body {
     object-fit: contain;
 }
 
-/* Panel Logo */
-.panel-logo {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.panel-logo img {
-    width: 120px; /* 1x bigger than current CRM view size */
-    height: 120px;
-    object-fit: contain;
-}
-
 .controls-left {
     display: flex;
     gap: 20px;
@@ -779,6 +767,31 @@ body {
     box-shadow: 0 2px 8px var(--shadow-medium);
     transition: all 0.3s ease-in-out;
     animation: slideInUp 0.4s ease-out 0.2s both;
+}
+
+/* New Floating Sugar Logo */
+.floating-sugar-logo {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+}
+
+.new-sugar-logo {
+    width: 600px; /* 5x larger than previous 120px */
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: optimizeQuality;
+}
+
+.new-sugar-logo:hover {
+    transform: scale(1.05);
 }
 
 .motivation-content {
@@ -1104,6 +1117,14 @@ body {
         flex-direction: column;
         gap: 20px;
     }
+    
+    .floating-sugar-logo {
+        top: -60px;
+    }
+    
+    .new-sugar-logo {
+        width: 400px; /* Smaller on mobile but still 5x proportionally */
+    }
 
     .sugar-logo {
         height: 240px; /* Smaller on mobile */
@@ -1141,5 +1162,13 @@ body {
     .cash-icon {
         width: 60px;
         height: 60px;
+    }
+    
+    .floating-sugar-logo {
+        top: -40px;
+    }
+    
+    .new-sugar-logo {
+        width: 300px; /* Even smaller on very small screens */
     }
 }
