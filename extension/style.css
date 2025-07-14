@@ -1097,6 +1097,7 @@ body {
     
     .loading-sugar-logo {
         height: 200px;
+        max-width: 90vw;
     }
 
     .new-deal-btn img {
@@ -1115,5 +1116,6 @@ body {
     
     .new-sugar-logo {
         width: 300px; /* Even smaller on very small screens */
+        max-width: 90vw;
     }
 }
