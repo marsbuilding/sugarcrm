@@ -646,6 +646,47 @@ class CRMManager {
         }, 800);
     }
 
+    createEmojiExplosion() {
+        const modal = document.getElementById('dealModal');
+        const rect = modal.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const emojis = ['💸', '💗', '💸', '💗', '💸', '💗'];
+        
+        emojis.forEach((emoji, index) => {
+            setTimeout(() => {
+                this.createEmojiElement(emoji, centerX, centerY);
+            }, index * 100);
+        });
+    }
+
+    createEmojiElement(emoji, centerX, centerY) {
+        const emojiEl = document.createElement('div');
+        emojiEl.className = 'emoji-explosion';
+        emojiEl.textContent = emoji;
+        
+        // Random position around center
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 100 + 50;
+        
+        const x = centerX + Math.cos(angle) * distance;
+        const y = centerY + Math.sin(angle) * distance;
+        
+        emojiEl.style.left = x + 'px';
+        emojiEl.style.top = y + 'px';
+        emojiEl.style.position = 'fixed';
+        
+        document.body.appendChild(emojiEl);
+        
+        // Remove after animation
+        setTimeout(() => {
+            if (emojiEl.parentNode) {
+                emojiEl.parentNode.removeChild(emojiEl);
+            }
+        }, 600);
+    }
+
     // Modal management
     openModal(dealId = null) {
         this.currentDealId = dealId;
