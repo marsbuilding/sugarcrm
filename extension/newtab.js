@@ -821,7 +821,7 @@ class CRMManager {
         }
 
         return `
-            <div class="deal-item" data-deal-id="${deal.id}">
+            <div class="deal-item" data-deal-id="${deal.id}" draggable="true">
                 <div class="deal-header">
                     <div class="deal-info">
                         <div class="deal-name">
@@ -836,6 +836,7 @@ class CRMManager {
                     </div>
                 </div>
                 ${tasksHtml}
+                <img src="https://videos.openai.com/vg-assets/assets%2Ftask_01jzn3azvqfvabpjnwbd6nyxsz%2F1751981274_img_0.webp?st=2025-07-14T19%3A18%3A07Z&se=2025-07-20T20%3A18%3A07Z&sks=b&skt=2025-07-14T19%3A18%3A07Z&ske=2025-07-20T20%3A18%3A07Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=vV%2BubpTyQSj604LY%2FH7W%2FsXeLbXXCvP6FywHEGDd9vw%3D&az=oaivgprodscus" alt="Sugar CRM Logo" class="deal-logo">
             </div>
         `;
     }

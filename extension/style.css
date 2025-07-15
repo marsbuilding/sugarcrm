@@ -258,6 +258,7 @@ body {
     flex: 1;
     margin-left: 240px;
     min-height: 100vh;
+    padding-top: 24px;
 }
 
 .sticky-header {
@@ -280,7 +281,7 @@ body {
 /* Views */
 .view {
     display: none;
-    padding: 40px;
+    padding: 24px 40px;
 }
 
 .view.active {
@@ -293,6 +294,8 @@ body {
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
+    padding-top: 24px;
+    align-items: flex-start;
 }
 
 .left-content {
@@ -405,8 +408,8 @@ body {
     display: flex;
     gap: 180px; /* 3x more space than current 60px */
     align-items: center;
-    margin-bottom: 20px;
-    padding: 20px 0;
+    margin-bottom: 24px;
+    padding: 24px 0;
     border-bottom: 1px solid var(--border-color);
     justify-content: space-between;
     transition: border-color 0.3s ease-in-out;
@@ -526,7 +529,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    padding-top: 24px;
 }
 
 .filter-pill {
@@ -571,20 +575,35 @@ body {
 
 /* Deals list */
 .deals-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+    display: grid;
+    grid-row-gap: 24px;
+    align-items: flex-start;
 }
 
 .deal-item {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     padding: 16px;
-    cursor: pointer;
+    cursor: grab;
     border-radius: 12px;
-    margin-bottom: 8px;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
     animation: slideInUp 0.4s ease-out;
+    position: relative;
+}
+
+.deal-item[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+.deal-item.dragging {
+    opacity: 0.7;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: rotate(2deg);
+}
+
+.deal-item.drag-over {
+    border-top: 3px solid var(--accent-green);
+    margin-top: 24px;
 }
 
 .deal-item:hover {
@@ -700,43 +719,40 @@ body {
     opacity: 0.6;
 }
 
+/* Deal card logo */
+.deal-logo {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 40px;
+    height: auto;
+    opacity: 0.6;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.deal-item:hover .deal-logo {
+    opacity: 0.8;
+}
+
 /* Motivation Panel - soft design */
 .motivation-panel {
     width: 300px;
-    background: var(--bg-secondary);
+    background: #bcf003;
     border-radius: 16px;
     padding: 24px;
     height: fit-content;
     position: sticky;
-    top: 120px;
+    top: 144px;
     box-shadow: 0 2px 8px var(--shadow-medium);
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease-in-out;
     animation: slideInUp 0.4s ease-out 0.2s both;
+    margin-top: 24px;
 }
 
-/* New Floating Sugar Logo */
-.floating-sugar-logo {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    text-align: center;
-}
-
-.new-sugar-logo {
-    width: 600px; /* 5x larger than previous 120px */
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    image-rendering: optimizeQuality;
-}
-
-.new-sugar-logo:hover {
-    transform: scale(1.05);
+[data-theme="dark"] .motivation-panel {
+    background: #bcf003;
+    color: #000000;
 }
 
 .motivation-content {
@@ -746,25 +762,25 @@ body {
 .motivation-quote {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #000000;
     line-height: 1.4;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     transition: color 0.3s ease-in-out;
 }
 
 .sales-tip {
     font-size: 14px;
-    color: var(--text-tertiary);
+    color: #333333;
     line-height: 1.5;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
+    border-top: 1px solid rgba(0,0,0,0.2);
     transition: all 0.3s ease-in-out;
 }
 
 .sales-tip-title {
     font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 8px;
+    color: #000000;
+    margin-bottom: 12px;
     transition: color 0.3s ease-in-out;
 }
 
@@ -853,6 +869,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     transition: opacity 0.3s ease-in-out;
+    padding-top: 24px;
 }
 
 .modal.active {
@@ -878,7 +895,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 24px;
     border-bottom: 1px solid var(--border-color);
     transition: border-color 0.3s ease-in-out;
 }
@@ -913,11 +930,11 @@ body {
 
 /* Form */
 .deal-form {
-    padding: 20px;
+    padding: 24px;
 }
 
 .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 .form-row {
@@ -969,8 +986,8 @@ body {
     display: flex;
     gap: 8px;
     justify-content: flex-end;
-    margin-top: 20px;
-    padding-top: 20px;
+    margin-top: 24px;
+    padding-top: 24px;
     border-top: 1px solid var(--border-color);
     transition: border-color 0.3s ease-in-out;
 }
@@ -1015,6 +1032,10 @@ body {
     .motivation-panel {
         display: none;
     }
+    
+    .content-wrapper {
+        padding-top: 24px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1031,18 +1052,18 @@ body {
     }
     
     .view {
-        padding: 20px 16px;
+        padding: 24px 16px;
     }
     
     .sticky-header {
-        padding: 16px 20px;
+        padding: 24px 20px;
     }
     
     .controls-section {
         flex-direction: column;
         gap: 16px;
         align-items: stretch;
-        padding: 20px 0;
+        padding: 24px 0;
     }
     
     .search-container {
@@ -1061,28 +1082,11 @@ body {
     .content-wrapper {
         flex-direction: column;
         gap: 20px;
+        padding-top: 24px;
     }
     
-    .floating-sugar-logo {
-        top: -60px;
-    }
-    
-    .new-sugar-logo {
-        width: 400px; /* Smaller on mobile but still 5x proportionally */
-    }
-
-    .sugar-logo {
-        height: 240px; /* Smaller on mobile */
-    }
-
-    .cash-icon {
-        width: 80px;
-        height: 80px;
-    }
-
-    .new-deal-btn img {
-        width: 80px; /* Smaller on mobile */
-        height: 80px;
+    .deal-logo {
+        width: 32px;
     }
 }
 
@@ -1105,17 +1109,7 @@ body {
         height: 60px;
     }
     
-    .cash-icon {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .floating-sugar-logo {
-        top: -40px;
-    }
-    
-    .new-sugar-logo {
-        width: 300px; /* Even smaller on very small screens */
-        max-width: 90vw;
+    .deal-logo {
+        width: 28px;
     }
 }
