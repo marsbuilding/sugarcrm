@@ -778,6 +778,9 @@ class CRMManager {
                 const dealId = item.dataset.dealId;
                 this.openModal(dealId);
             });
+            
+            // Add drag and drop event listeners
+            this.setupDragAndDrop(item);
         });
 
         // Add task checkbox handlers
@@ -788,6 +791,114 @@ class CRMManager {
                 const taskIndex = parseInt(checkbox.dataset.taskIndex);
                 this.toggleTask(dealId, taskIndex);
             });
+        });
+    }
+
+    setupDragAndDrop(dealItem) {
+        let draggedElement = null;
+        let placeholder = null;
+
+        dealItem.addEventListener('dragstart', (e) => {
+            draggedElement = dealItem;
+            dealItem.classList.add('dragging');
+            e.dataTransfer.setData('text/plain', dealItem.dataset.dealId);
+            e.dataTransfer.effectAllowed = 'move';
+            
+            // Create placeholder
+            placeholder = document.createElement('div');
+            placeholder.className = 'deal-item-placeholder';
+            placeholder.style.height = dealItem.offsetHeight + 'px';
+            placeholder.style.background = 'var(--bg-tertiary)';
+            placeholder.style.border = '2px dashed var(--border-color)';
+            placeholder.style.borderRadius = '12px';
+            placeholder.style.margin = '12px 0';
+        });
+
+        dealItem.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            
+            if (dealItem !== draggedElement) {
+                const rect = dealItem.getBoundingClientRect();
+                const midpoint = rect.top + rect.height / 2;
+                
+                if (e.clientY < midpoint) {
+                    dealItem.parentNode.insertBefore(placeholder, dealItem);
+                } else {
+                    dealItem.parentNode.insertBefore(placeholder, dealItem.nextSibling);
+                }
+            }
+        });
+
+        dealItem.addEventListener('drop', (e) => {
+            e.preventDefault();
+            
+            if (dealItem !== draggedElement && placeholder && placeholder.parentNode) {
+                const draggedDealId = e.dataTransfer.getData('text/plain');
+                const targetDealId = dealItem.dataset.dealId;
+                
+                // Find the deals in the array
+                const draggedIndex = this.deals.findIndex(deal => deal.id === draggedDealId);
+                const targetIndex = this.deals.findIndex(deal => deal.id === targetDealId);
+                
+                if (draggedIndex !== -1 && targetIndex !== -1) {
+                    // Remove the dragged deal from its current position
+                    const [draggedDeal] = this.deals.splice(draggedIndex, 1);
+                    
+                    // Determine new position based on placeholder position
+                    const placeholderIndex = Array.from(placeholder.parentNode.children).indexOf(placeholder);
+                    const dealItems = Array.from(placeholder.parentNode.querySelectorAll('.deal-item:not(.dragging)'));
+                    
+                    let newIndex;
+                    if (placeholderIndex === 0) {
+                        newIndex = 0;
+                    } else if (placeholderIndex >= dealItems.length) {
+                        newIndex = this.deals.length;
+                    } else {
+                        const referenceItem = dealItems[placeholderIndex - 1];
+                        const referenceDealId = referenceItem ? referenceItem.dataset.dealId : null;
+                        newIndex = referenceDealId ? this.deals.findIndex(deal => deal.id === referenceDealId) + 1 : 0;
+                    }
+                    
+                    // Insert the deal at the new position
+                    this.deals.splice(newIndex, 0, draggedDeal);
+                    
+                    // Save and re-render
+                    this.saveDeals();
+                    this.renderDeals();
+                }
+            }
+        });
+
+        dealItem.addEventListener('dragend', (e) => {
+            dealItem.classList.remove('dragging');
+            
+            // Remove placeholder
+            if (placeholder && placeholder.parentNode) {
+                placeholder.parentNode.removeChild(placeholder);
+            }
+            
+            // Remove any drag-over classes
+            document.querySelectorAll('.deal-item').forEach(item => {
+                item.classList.remove('drag-over');
+            });
+            
+            draggedElement = null;
+            placeholder = null;
+        });
+
+        dealItem.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            if (dealItem !== draggedElement) {
+                dealItem.classList.add('drag-over');
+            }
+        });
+
+        dealItem.addEventListener('dragleave', (e) => {
+            // Only remove drag-over if we're actually leaving the element
+            if (!dealItem.contains(e.relatedTarget)) {
+                dealItem.classList.remove('drag-over');
+            }
         });
     }
 
