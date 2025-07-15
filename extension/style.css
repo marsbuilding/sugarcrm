@@ -161,6 +161,51 @@ body {
     min-height: 100vh;
 }
 
+.audio-icon {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-item[data-audio-enabled="true"] .audio-off {
+    opacity: 0;
+    position: absolute;
+}
+
+.sidebar-item[data-audio-enabled="true"] .audio-on {
+    opacity: 1;
+}
+
+.sidebar-item[data-audio-enabled="false"] .audio-on {
+    opacity: 0;
+    position: absolute;
+}
+
+.sidebar-item[data-audio-enabled="false"] .audio-off {
+    opacity: 1;
+}
+
+/* Audio Toggle Icons */
+.audio-icon {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-item[data-audio-enabled="true"] .audio-off {
+    opacity: 0;
+    position: absolute;
+}
+
+.sidebar-item[data-audio-enabled="true"] .audio-on {
+    opacity: 1;
+}
+
+.sidebar-item[data-audio-enabled="false"] .audio-on {
+    opacity: 0;
+    position: absolute;
+}
+
+.sidebar-item[data-audio-enabled="false"] .audio-off {
+    opacity: 1;
+}
+
 /* Theme Toggle Icons */
 .theme-icon {
     transition: opacity 0.3s ease-in-out;
@@ -280,7 +325,7 @@ body {
 /* Views */
 .view {
     display: none;
-    padding: 40px;
+    padding: 60px 40px 40px 40px;
 }
 
 .view.active {
@@ -703,42 +748,15 @@ body {
 /* Motivation Panel - soft design */
 .motivation-panel {
     width: 300px;
-    background: var(--bg-secondary);
+    background: var(--accent-green);
     border-radius: 16px;
     padding: 24px;
     height: fit-content;
     position: sticky;
-    top: 120px;
+    top: 40px;
     box-shadow: 0 2px 8px var(--shadow-medium);
     transition: all 0.3s ease-in-out;
     animation: slideInUp 0.4s ease-out 0.2s both;
-}
-
-/* New Floating Sugar Logo */
-.floating-sugar-logo {
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    text-align: center;
-}
-
-.new-sugar-logo {
-    width: 600px; /* 5x larger than previous 120px */
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    image-rendering: optimizeQuality;
-}
-
-.new-sugar-logo:hover {
-    transform: scale(1.05);
-}
-
 .motivation-content {
     text-align: center;
 }
@@ -746,7 +764,7 @@ body {
 .motivation-quote {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: #000000;
     line-height: 1.4;
     margin-bottom: 20px;
     transition: color 0.3s ease-in-out;
@@ -754,16 +772,16 @@ body {
 
 .sales-tip {
     font-size: 14px;
-    color: var(--text-tertiary);
+    color: #000000;
     line-height: 1.5;
     padding-top: 20px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
 }
 
 .sales-tip-title {
     font-weight: 600;
-    color: var(--text-primary);
+    color: #000000;
     margin-bottom: 8px;
     transition: color 0.3s ease-in-out;
 }
@@ -1067,10 +1085,6 @@ body {
         top: -60px;
     }
     
-    .new-sugar-logo {
-        width: 400px; /* Smaller on mobile but still 5x proportionally */
-    }
-
     .sugar-logo {
         height: 240px; /* Smaller on mobile */
     }
@@ -1114,8 +1128,4 @@ body {
         top: -40px;
     }
     
-    .new-sugar-logo {
-        width: 300px; /* Even smaller on very small screens */
-        max-width: 90vw;
-    }
 }

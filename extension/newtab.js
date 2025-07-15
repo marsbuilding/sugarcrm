@@ -3,6 +3,7 @@ class CRMManager {
     constructor() {
         this.deals = [];
         this.currentTheme = 'light';
+        this.audioEnabled = true;
         this.currentDealId = null;
         this.currentFilter = '';
         this.currentView = 'home';
@@ -168,6 +169,7 @@ class CRMManager {
     async init() {
         this.showLoadingScreen();
         await this.loadTheme();
+        await this.loadAudioSetting();
         await this.loadDeals();
         this.setupEventListeners();
         this.setDailyMotivationalQuote();
@@ -197,6 +199,57 @@ class CRMManager {
             await chrome.storage.local.set({ theme: this.currentTheme });
         } catch (error) {
             console.error('Error saving theme:', error);
+        }
+    }
+
+    // Audio management
+    async loadAudioSetting() {
+        try {
+            const result = await chrome.storage.local.get(['audioEnabled']);
+            if (result.audioEnabled !== undefined) {
+                this.audioEnabled = result.audioEnabled;
+            } else {
+                this.audioEnabled = true; // Default to enabled
+            }
+            this.applyAudioSetting();
+        } catch (error) {
+            console.error('Error loading audio setting:', error);
+        }
+    }
+
+    async saveAudioSetting() {
+        try {
+            await chrome.storage.local.set({ audioEnabled: this.audioEnabled });
+        } catch (error) {
+            console.error('Error saving audio setting:', error);
+        }
+    }
+
+    applyAudioSetting() {
+        const audioToggle = document.getElementById('audioToggle');
+        if (audioToggle) {
+            audioToggle.setAttribute('data-audio-enabled', this.audioEnabled.toString());
+        }
+    }
+
+    toggleAudio() {
+        this.audioEnabled = !this.audioEnabled;
+        this.applyAudioSetting();
+        this.saveAudioSetting();
+    }
+
+    playDealSound() {
+        if (!this.audioEnabled) return;
+        
+        try {
+            // Create audio element for the deal sound
+            const audio = new Audio('https://www.youtube.com/watch?v=Bgqk6t9Be1Q');
+            audio.volume = 0.3; // 30% volume
+            audio.play().catch(error => {
+                console.log('Audio play failed:', error);
+            });
+        } catch (error) {
+            console.log('Audio creation failed:', error);
         }
     }
 
@@ -376,6 +429,7 @@ class CRMManager {
         // New deal button
         document.getElementById('newDealBtn').addEventListener('click', () => {
             this.animateHeartClick();
+            this.playDealSound();
             this.openModal();
         });
 
@@ -463,6 +517,11 @@ class CRMManager {
         // Theme toggle
         document.getElementById('themeToggle').addEventListener('click', () => {
             this.toggleTheme();
+        });
+
+        // Audio toggle
+        document.getElementById('audioToggle').addEventListener('click', () => {
+            this.toggleAudio();
         });
 
         // Listen for system theme changes
