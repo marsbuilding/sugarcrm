@@ -291,16 +291,18 @@ class CRMManager {
         const quoteIndex = dayOfYear % this.motivationalQuotes.length;
         const quote = this.motivationalQuotes[quoteIndex];
         
-        document.getElementById('motivationQuote').textContent = quote;
+        this.setSessionSalesTip();
     }
 
-    setDailySalesTip() {
-        const today = new Date();
-        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-        const tipIndex = dayOfYear % this.salesTips.length;
+    setSessionSalesTip() {
+        // Generate random tip for this session
+        const tipIndex = Math.floor(Math.random() * this.salesTips.length);
         const tip = this.salesTips[tipIndex];
         
-        document.getElementById('salesTipText').textContent = tip.text;
+        const salesTipElement = document.getElementById('salesTipText');
+        if (salesTipElement && tip && tip.text) {
+            salesTipElement.textContent = tip.text;
+        }
     }
 
     setMotivationalMessage() {
