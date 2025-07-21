@@ -214,10 +214,11 @@ class CRMManager {
         await this.loadTheme();
         await this.loadDeals();
         this.setupEventListeners();
-        this.setDailyMotivationalQuote(); // Keep daily quote as is
         this.setSessionContent(); // Set session-based content once
         this.renderDeals();
-        this.renderNextSteps();
+        
+        // Ensure data persistence across tabs
+        this.ensureDataConsistency();
     }
 
     // Theme management
@@ -254,6 +255,20 @@ class CRMManager {
         this.saveTheme();
     }
 
+    // Ensure data consistency across tabs
+    async ensureDataConsistency() {
+        try {
+            // Force reload deals from storage to ensure consistency
+            const result = await chrome.storage.local.get(['deals']);
+            if (result.deals && Array.isArray(result.deals)) {
+                this.deals = result.deals;
+                this.renderDeals();
+            }
+        } catch (error) {
+            console.error('Error ensuring data consistency:', error);
+        }
+    }
+
     showLoadingScreen() {
         const progressFill = document.getElementById('progressFill');
         
@@ -282,6 +297,8 @@ class CRMManager {
         setTimeout(() => {
             loadingScreen.style.display = 'none';
             appContainer.style.display = 'flex';
+            // Ensure deals are rendered after app becomes visible
+            this.renderDeals();
         }, 500);
     }
 
@@ -302,6 +319,8 @@ class CRMManager {
         const salesTipElement = document.getElementById('salesTipText');
         if (salesTipElement && tip && tip.text) {
             salesTipElement.textContent = tip.text;
+        } else {
+            console.warn('Sales tip element not found or tip data missing');
         }
     }
 
@@ -351,9 +370,26 @@ class CRMManager {
     async saveDeals() {
         try {
             await chrome.storage.local.set({ deals: this.deals });
+            // Broadcast change to other tabs if needed
+            this.broadcastDataChange();
         } catch (error) {
             console.error('Error saving deals:', error);
         }
+    }
+
+    // Broadcast data changes to other tabs
+    broadcastDataChange() {
+        // Use storage change events to sync across tabs
+        chrome.storage.onChanged.addListener((changes, namespace) => {
+            if (namespace === 'local' && changes.deals && !this.isUpdating) {
+                this.isUpdating = true;
+                this.deals = changes.deals.newValue || [];
+                this.renderDeals();
+                setTimeout(() => {
+                    this.isUpdating = false;
+                }, 100);
+            }
+        });
     }
 
     // Deal operations
