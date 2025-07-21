@@ -1024,10 +1024,6 @@ class CRMManager {
                     </div>
                 </div>
                 ${tasksHtml}
-                <div class="deal-actions">
-                    <button class="deal-action-btn deal-save-btn" data-deal-id="${deal.id}">Save</button>
-                    <button class="deal-action-btn deal-delete-btn" data-deal-id="${deal.id}">Delete</button>
-                </div>
             </div>
         `;
     }
