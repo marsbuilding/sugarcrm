@@ -780,6 +780,17 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
+.sales-tip-content {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333333;
+}
+
+[data-theme="dark"] .sales-tip-content {
+    color: #ffffff;
+}
+
 /* Motivational Message Box - Glassmorphism */
 .motivational-message-headline {
     margin-bottom: 20px;
@@ -954,7 +965,6 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     transition: opacity 0.3s ease-in-out;
-    padding-top: 24px;
 }
 
 .modal.active {

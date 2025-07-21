@@ -319,8 +319,13 @@ class CRMManager {
         const salesTipElement = document.getElementById('salesTipText');
         if (salesTipElement && tip && tip.text) {
             salesTipElement.textContent = tip.text;
+            console.log('Sales tip set:', tip.text.substring(0, 50) + '...');
         } else {
-            console.warn('Sales tip element not found or tip data missing');
+            console.error('Sales tip element not found or tip data missing', {
+                element: !!salesTipElement,
+                tip: !!tip,
+                tipText: tip ? !!tip.text : false
+            });
         }
     }
 
