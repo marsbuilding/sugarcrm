@@ -763,14 +763,35 @@ body {
 }
 
 /* Motivational Message Box - Glassmorphism */
+.motivational-message-headline {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.motivational-message-headline .motivational-message-text {
+    font-size: 18px;
+    color: #000000;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500; /* Changed from 400 to 500 for better readability as headline */
+    font-style: normal; /* Changed from italic to normal */
+    line-height: 1.4;
+    transition: all 0.3s ease-in-out;
+    animation: fadeInText 1s ease-in-out;
+}
+
+[data-theme="dark"] .motivational-message-headline .motivational-message-text {
+    color: #ffffff;
+}
+
 .motivational-message-box {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
-    padding: 20px;
+    padding: 16px; /* Reduced padding since content moved out */
+    min-height: 60px; /* Maintain visual presence as container */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
     animation: gentleFloat 6s ease-in-out infinite;
@@ -782,22 +803,17 @@ body {
     box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
 }
 
-.motivational-message-content {
-    text-align: center;
-}
-
-.motivational-message-text {
-    font-size: 14px;
+/* Sales tip title styling */
+.sales-tip-title {
+    font-size: 16px;
+    font-weight: 600;
     color: #000000;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    line-height: 1.5;
-    font-style: italic;
-    transition: all 0.3s ease-in-out;
-    animation: fadeInText 1s ease-in-out;
+    margin-bottom: 12px;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
 }
 
-[data-theme="dark"] .motivational-message-text {
+[data-theme="dark"] .sales-tip-title {
     color: #ffffff;
 }
 

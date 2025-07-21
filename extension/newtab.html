@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="48x48" href="cash icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Syne:wght@800&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Syne:wght@800&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="light">
@@ -17,7 +17,7 @@
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-content">
             <div class="loading-image">
-                <img src="https://videos.openai.com/vg-assets/assets%2Ftask_01jzn3azvqfvabpjnwbd6nyxsz%2F1751981274_img_0.webp?st=2025-07-14T19%3A18%3A07Z&se=2025-07-20T20%3A18%3A07Z&sks=b&skt=2025-07-14T19%3A18%3A07Z&ske=2025-07-20T20%3A18%3A07Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=vV%2BubpTyQSj604LY%2FH7W%2FsXeLbXXCvP6FywHEGDd9vw%3D&az=oaivgprodscus" alt="Sugar CRM Loading Logo" class="loading-sugar-logo">
+                <img src="../src/assets/20250708_1027_Glossy Neon Text_remix_01jzn3b1e8fkdrz5wnacvp0c5f copy.png" alt="Sugar CRM Loading Logo" class="loading-sugar-logo">
             </div>
         </div>
         <div class="progress-bar">
@@ -117,13 +117,17 @@
                     <!-- Motivation Panel -->
                     <div class="motivation-panel" id="motivationPanel">
                         <div class="motivation-content">
+                            <!-- Motivational message moved outside container as headline -->
+                            <div class="motivational-message-headline" id="motivationalMessageHeadline">
+                                <div class="motivational-message-text" id="motivationalMessageText"></div>
+                            </div>
+                            
                             <div class="motivational-message-box" id="motivationalMessageBox">
-                                <div class="motivational-message-content">
-                                    <div class="motivational-message-text" id="motivationalMessageText"></div>
-                                </div>
+                                <!-- Message box now serves as container only -->
                             </div>
                             <div class="motivation-quote" id="motivationQuote"></div>
                             <div class="sales-tip" id="salesTip">
+                                <div class="sales-tip-title">Sales Tip of the Day</div>
                                 <div id="salesTipText"></div>
                             </div>
                         </div>

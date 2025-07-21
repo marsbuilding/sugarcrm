@@ -214,10 +214,8 @@ class CRMManager {
         await this.loadTheme();
         await this.loadDeals();
         this.setupEventListeners();
-        this.setDailyMotivationalQuote();
-        this.setDailySalesTip();
-        this.setMotivationalMessage();
-        this.startMessageRotation();
+        this.setDailyMotivationalQuote(); // Keep daily quote as is
+        this.setSessionContent(); // Set session-based content once
         this.renderDeals();
         this.renderNextSteps();
     }
