@@ -8,6 +8,80 @@ class CRMManager {
         this.currentView = 'home';
         this.searchQuery = '';
         this.hideClosedDeals = true;
+        this.motivationalMessages = {
+            'existential': [
+                "You don't have to be the sun. Today, you're the soft, unbothered moon.",
+                "Nothing is broken. You're just between versions.",
+                "The silence you're avoiding is trying to introduce you to yourself.",
+                "You can't force a flower to bloom faster. Neither can you.",
+                "Your anxiety is trying to protect you. Tell it you're safe now.",
+                "Sometimes success looks like eating lunch before 3pm.",
+                "You're not falling behind. You're just not rushing.",
+                "If it feels hollow, stop pretending it fills you.",
+                "Your peace is louder than your inbox.",
+                "Don't confuse chaos with passion."
+            ],
+            'savage': [
+                "You're not tired. You're uninspired.",
+                "You already know what to do. You're just stalling.",
+                "You keep asking the stars, but the answer is in your Notes app.",
+                "Rest doesn't need to be earned. Stop performing burnout.",
+                "You can't be everything. Try being something.",
+                "Saying yes to everything is how your boundaries starve.",
+                "Is it love or just an unsaved number in your phone?",
+                "Your to-do list won't hold your hand when you cry.",
+                "You're not confused. You just want permission.",
+                "Not replying is also communication."
+            ],
+            'grounding': [
+                "Drink some water. You're mostly made of it.",
+                "You don't have to reinvent yourself today.",
+                "Slow is sacred.",
+                "You can be soft and still get sh*t done.",
+                "The world won't collapse if you take a nap.",
+                "Let your nervous system catch up before you do.",
+                "You're allowed to want less noise.",
+                "Look how far you've come from what almost broke you.",
+                "Nothing urgent deserves your peace.",
+                "You're the main character. Stop treating yourself like a sidekick."
+            ],
+            'absurdist': [
+                "Mercury isn't in retrograde. Your unresolved feelings are.",
+                "You've opened Instagram 9 times. Open your heart instead.",
+                "The stars are fake. Your gut isn't.",
+                "Venus says: text them back or delete the thread. Pick a lane.",
+                "You manifested this. You also forgot to eat.",
+                "The algorithm thinks you're sad. Prove it wrong.",
+                "Capitalism doesn't love you. Your group chat might.",
+                "The moon can't fix your sleep schedule. Try melatonin.",
+                "You're not a productivity app.",
+                "Today is not the day to re-download Hinge."
+            ],
+            'encouraging': [
+                "It's a good day to come home to yourself.",
+                "Choose one thing. Do it like you mean it.",
+                "You're more capable than the voice that doubts you.",
+                "Healing doesn't have to be poetic. It can be ugly and still be working.",
+                "You didn't come this far to ghost yourself now.",
+                "You're not lost. You're just not where you expected.",
+                "You still get to change your mind.",
+                "Your effort counts, even when it's quiet.",
+                "You're the proof that slow magic is real.",
+                "The thing you want is already looking for you."
+            ],
+            'cryptic': [
+                "Wear the outfit.",
+                "Say the thing.",
+                "Don't text them.",
+                "Wash your sheets.",
+                "Drink the coffee.",
+                "Unfollow.",
+                "Breathe before reacting.",
+                "Let it be weird.",
+                "Mute the group chat.",
+                "Choose peace—even if it's boring."
+            ]
+        };
         this.motivationalQuotes = [
             "Go get that bag, sis.",
             "You're the asset.",
@@ -172,6 +246,8 @@ class CRMManager {
         this.setupEventListeners();
         this.setDailyMotivationalQuote();
         this.setDailySalesTip();
+        this.setMotivationalMessage();
+        this.startMessageRotation();
         this.renderDeals();
         this.renderNextSteps();
     }
@@ -258,6 +334,38 @@ class CRMManager {
         
         document.getElementById('salesTipTitle').textContent = tip.title;
         document.getElementById('salesTipText').textContent = tip.text;
+    }
+
+    setMotivationalMessage() {
+        // Get all message categories
+        const categories = Object.keys(this.motivationalMessages);
+        
+        // Select random category
+        const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+        
+        // Select random message from category
+        const messages = this.motivationalMessages[randomCategory];
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        
+        // Update the display
+        const messageElement = document.getElementById('motivationalMessageText');
+        if (messageElement) {
+            messageElement.style.animation = 'none';
+            messageElement.offsetHeight; // Trigger reflow
+            messageElement.style.animation = 'fadeInText 1s ease-in-out';
+            messageElement.textContent = randomMessage;
+        }
+    }
+
+    startMessageRotation() {
+        // Rotate messages every 30 seconds with some randomness
+        setInterval(() => {
+            // Add randomness to timing (25-35 seconds)
+            const randomDelay = Math.random() * 10000 + 25000;
+            setTimeout(() => {
+                this.setMotivationalMessage();
+            }, randomDelay);
+        }, 30000);
     }
 
     // Data persistence
@@ -772,7 +880,8 @@ class CRMManager {
         dealsList.querySelectorAll('.deal-item').forEach(item => {
             item.addEventListener('click', (e) => {
                 // Don't open modal if clicking on a task checkbox
-                if (e.target.classList.contains('deal-task-checkbox')) {
+                if (e.target.classList.contains('deal-task-checkbox') || 
+                    e.target.classList.contains('deal-action-btn')) {
                     return;
                 }
                 const dealId = item.dataset.dealId;
@@ -792,6 +901,49 @@ class CRMManager {
                 this.toggleTask(dealId, taskIndex);
             });
         });
+
+        // Add deal action button handlers
+        dealsList.querySelectorAll('.deal-save-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const dealId = btn.dataset.dealId;
+                this.handleCardSave(dealId);
+            });
+        });
+
+        dealsList.querySelectorAll('.deal-delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const dealId = btn.dataset.dealId;
+                this.handleCardDelete(dealId);
+            });
+        });
+    }
+
+    // Handle card-level save action
+    handleCardSave(dealId) {
+        const dealElement = document.querySelector(`[data-deal-id="${dealId}"]`);
+        if (dealElement) {
+            dealElement.classList.add('collapsing');
+            setTimeout(() => {
+                // Save operation would go here
+                // For now, just re-render to remove the collapsed card
+                this.renderDeals();
+            }, 500);
+        }
+    }
+
+    // Handle card-level delete action
+    handleCardDelete(dealId) {
+        if (confirm('Are you sure you want to delete this deal?')) {
+            const dealElement = document.querySelector(`[data-deal-id="${dealId}"]`);
+            if (dealElement) {
+                dealElement.classList.add('collapsing');
+                setTimeout(() => {
+                    this.deleteDeal(dealId);
+                }, 500);
+            }
+        }
     }
 
     setupDragAndDrop(dealItem) {
@@ -947,7 +1099,10 @@ class CRMManager {
                     </div>
                 </div>
                 ${tasksHtml}
-                <img src="https://videos.openai.com/vg-assets/assets%2Ftask_01jzn3azvqfvabpjnwbd6nyxsz%2F1751981274_img_0.webp?st=2025-07-14T19%3A18%3A07Z&se=2025-07-20T20%3A18%3A07Z&sks=b&skt=2025-07-14T19%3A18%3A07Z&ske=2025-07-20T20%3A18%3A07Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=aa5ddad1-c91a-4f0a-9aca-e20682cc8969&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=vV%2BubpTyQSj604LY%2FH7W%2FsXeLbXXCvP6FywHEGDd9vw%3D&az=oaivgprodscus" alt="Sugar CRM Logo" class="deal-logo">
+                <div class="deal-actions">
+                    <button class="deal-action-btn deal-save-btn" data-deal-id="${deal.id}">Save</button>
+                    <button class="deal-action-btn deal-delete-btn" data-deal-id="${deal.id}">Delete</button>
+                </div>
             </div>
         `;
     }

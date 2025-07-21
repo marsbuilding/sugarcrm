@@ -576,7 +576,7 @@ body {
 /* Deals list */
 .deals-list {
     display: grid;
-    grid-row-gap: 24px;
+    grid-row-gap: 48px;
     align-items: flex-start;
 }
 
@@ -719,20 +719,74 @@ body {
     opacity: 0.6;
 }
 
-/* Deal card logo */
-.deal-logo {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    width: 40px;
-    height: auto;
-    opacity: 0.6;
-    object-fit: contain;
-    transition: opacity 0.3s ease;
+/* Deal Actions */
+.deal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+    justify-content: flex-end;
 }
 
-.deal-item:hover .deal-logo {
-    opacity: 0.8;
+.deal-action-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease-in-out;
+}
+
+.deal-action-btn:hover {
+    background: var(--bg-tertiary);
+}
+
+.deal-save-btn {
+    background: var(--text-primary) !important;
+    color: var(--bg-primary) !important;
+    border-color: var(--text-primary) !important;
+}
+
+.deal-save-btn:hover {
+    opacity: 0.8 !important;
+}
+
+.deal-delete-btn {
+    color: #d32f2f !important;
+    border-color: #d32f2f !important;
+}
+
+.deal-delete-btn:hover {
+    background: #ffebee !important;
+}
+
+/* Card collapse animation */
+.deal-item.collapsing {
+    animation: collapseCard 0.5s ease-in-out forwards;
+    pointer-events: none;
+}
+
+@keyframes collapseCard {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        max-height: 500px;
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+        max-height: 0;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 /* Motivation Panel - soft design */
@@ -782,6 +836,78 @@ body {
     color: #000000;
     margin-bottom: 12px;
     transition: color 0.3s ease-in-out;
+}
+
+/* Motivational Message Box - Glassmorphism */
+.motivational-message-box {
+    margin-top: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    animation: gentleFloat 6s ease-in-out infinite;
+}
+
+[data-theme="dark"] .motivational-message-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.05);
+}
+
+.motivational-message-content {
+    text-align: center;
+}
+
+.motivational-message-text {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.5;
+    font-style: italic;
+    transition: all 0.3s ease-in-out;
+    animation: fadeInText 1s ease-in-out;
+}
+
+[data-theme="dark"] .motivational-message-text {
+    color: #ffffff;
+}
+
+/* Glassmorphism animations */
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect for message box */
+.motivational-message-box:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .motivational-message-box:hover {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
 }
 
 /* Task Management in Forms */
