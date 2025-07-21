@@ -10,76 +10,76 @@ class CRMManager {
         this.hideClosedDeals = true;
         this.motivationalMessages = {
             'existential': [
-                "You don't have to be the sun. Today, you're the soft, unbothered moon.",
-                "Nothing is broken. You're just between versions.",
-                "The silence you're avoiding is trying to introduce you to yourself.",
-                "You can't force a flower to bloom faster. Neither can you.",
-                "Your anxiety is trying to protect you. Tell it you're safe now.",
-                "Sometimes success looks like eating lunch before 3pm.",
-                "You're not falling behind. You're just not rushing.",
-                "If it feels hollow, stop pretending it fills you.",
-                "Your peace is louder than your inbox.",
-                "Don't confuse chaos with passion."
+                "You're not behind on follow-ups. You're waiting for divine timing.",
+                "There's gold in the second follow-up. Dig.",
+                "Just because they ghosted doesn't mean you should.",
+                "People buy when they feel seen. Start there.",
+                "The deal isn't dead. It's just taking a nap.",
+                "The real pitch starts after the pitch.",
+                "You don't need more leads. You need more honesty.",
+                "They didn't say no. They said not yet.",
+                "You're not closing deals today—you're opening doors.",
+                "Conversations > conversions. (Usually.)"
             ],
             'savage': [
-                "You're not tired. You're uninspired.",
-                "You already know what to do. You're just stalling.",
-                "You keep asking the stars, but the answer is in your Notes app.",
-                "Rest doesn't need to be earned. Stop performing burnout.",
-                "You can't be everything. Try being something.",
-                "Saying yes to everything is how your boundaries starve.",
-                "Is it love or just an unsaved number in your phone?",
-                "Your to-do list won't hold your hand when you cry.",
-                "You're not confused. You just want permission.",
-                "Not replying is also communication."
+                "The CRM isn't going to update itself.",
+                "Stop blaming the leads. Start owning the follow-through.",
+                "That \"quick call\" wasn't quick because you didn't prep.",
+                "Not every no is about you. But some are.",
+                "If you have time to refresh LinkedIn, you have time to send the email.",
+                "The founder doesn't need another update. They need results.",
+                "That \"perfect\" prospect? Not worth your peace.",
+                "Inbox zero doesn't mean pipeline full.",
+                "You don't need another tool. You need to hit send.",
+                "Saying yes to every collab is how your strategy gets blurry."
             ],
             'grounding': [
-                "Drink some water. You're mostly made of it.",
-                "You don't have to reinvent yourself today.",
-                "Slow is sacred.",
-                "You can be soft and still get sh*t done.",
-                "The world won't collapse if you take a nap.",
-                "Let your nervous system catch up before you do.",
-                "You're allowed to want less noise.",
-                "Look how far you've come from what almost broke you.",
-                "Nothing urgent deserves your peace.",
-                "You're the main character. Stop treating yourself like a sidekick."
+                "Your next big win might be one weird DM away.",
+                "Be the partner you'd want to pitch.",
+                "Don't rush the relationship.",
+                "It's okay to pause before responding.",
+                "You're not annoying. You're just persistent.",
+                "Nobody likes pushy. Everybody likes clear.",
+                "The right collab feels like flow, not friction.",
+                "Listen more. That's where the insight hides.",
+                "One warm intro > ten cold ones.",
+                "Follow-through is your love language."
             ],
             'absurdist': [
-                "Mercury isn't in retrograde. Your unresolved feelings are.",
-                "You've opened Instagram 9 times. Open your heart instead.",
-                "The stars are fake. Your gut isn't.",
-                "Venus says: text them back or delete the thread. Pick a lane.",
-                "You manifested this. You also forgot to eat.",
-                "The algorithm thinks you're sad. Prove it wrong.",
-                "Capitalism doesn't love you. Your group chat might.",
-                "The moon can't fix your sleep schedule. Try melatonin.",
-                "You're not a productivity app.",
-                "Today is not the day to re-download Hinge."
+                "The stars say: don't send that pitch deck yet.",
+                "You manifested pipeline. Now manage it.",
+                "The deal is alive. Just very quiet.",
+                "Mercury isn't in retrograde. Your CRM is.",
+                "The founder you're chasing is also avoiding emails.",
+                "Rejection builds resilience. And better email templates.",
+                "Your Zoom face is giving I need a walk.",
+                "Today's alignment: you, the prospect, and a scheduling link.",
+                "Don't pitch someone you wouldn't get a drink with.",
+                "The stars aren't aligned. But your calendar can be."
             ],
             'encouraging': [
-                "It's a good day to come home to yourself.",
-                "Choose one thing. Do it like you mean it.",
-                "You're more capable than the voice that doubts you.",
-                "Healing doesn't have to be poetic. It can be ugly and still be working.",
-                "You didn't come this far to ghost yourself now.",
-                "You're not lost. You're just not where you expected.",
-                "You still get to change your mind.",
-                "Your effort counts, even when it's quiet.",
-                "You're the proof that slow magic is real.",
-                "The thing you want is already looking for you."
+                "You already know what to do. Start with one email.",
+                "There's magic in your follow-up tone today.",
+                "You're not a robot. Don't talk like one.",
+                "A little charm goes further than another feature.",
+                "You're not here to beg. You're here to bring value.",
+                "The next yes comes from showing up, not showing off.",
+                "You don't need a win. You need momentum.",
+                "Be curious. Not every conversation needs to convert.",
+                "Rejection today builds stories for tomorrow.",
+                "You're not closing deals—you're building stories."
             ],
             'cryptic': [
-                "Wear the outfit.",
-                "Say the thing.",
-                "Don't text them.",
-                "Wash your sheets.",
-                "Drink the coffee.",
-                "Unfollow.",
-                "Breathe before reacting.",
-                "Let it be weird.",
-                "Mute the group chat.",
-                "Choose peace—even if it's boring."
+                "Pitch. Pause. Personalize.",
+                "Energy > urgency.",
+                "Ask better questions.",
+                "Follow up, not through.",
+                "Send the weird email.",
+                "Don't overthink the deck.",
+                "Mute Slack. Write the follow-up.",
+                "Be the calmest person on the call.",
+                "Close the tab. Make the call.",
+                "Keep going. The yes is coming."
             ]
         };
         this.motivationalQuotes = [
@@ -116,123 +116,93 @@ class CRMManager {
         ];
         this.salesTips = [
             {
-                title: "Ask one more question",
                 text: "Most people stop at surface-level discovery. But it's usually the next question — \"What happens if this doesn't get solved?\" or \"Who else is impacted?\" — that uncovers urgency or the real buying motive. Don't rush to pitch; keep the spotlight on them."
             },
             {
-                title: "Don't pitch a product — diagnose a problem",
                 text: "Consultative selling starts with being the expert who helps them see what they've missed. Use your calls to help them diagnose their challenge more clearly than they could on their own — and only then position your offer as the natural next step."
             },
             {
-                title: "When you say the price, say it with stillness",
                 text: "The pause after stating your price is sacred. Let it hang. Let them process. If you rush to justify, discount, or talk over the moment, you communicate uncertainty. Own it. Price is part of your confidence."
             },
             {
-                title: "Always uncover: Why now?",
                 text: "If they say \"This looks cool, maybe in Q3,\" you've already lost. Anchor your conversations in urgency: what shifted today that makes this worth their time and money? No urgency = no deal. Get to the trigger fast."
             },
             {
-                title: "Steal their words",
                 text: "Seriously. When you repeat their exact phrasing in your deck, email, or follow-up — you short-circuit resistance. It shows you're listening. Example: If they say \"We're drowning in manual reporting,\" don't say \"automated dashboards,\" say \"You mentioned drowning in manual reports — here's how we solve that.\""
             },
             {
-                title: "Treat your discovery call like a good first date",
                 text: "No one wants a monologue or a résumé dump. Ask thoughtful questions. Make them feel seen. Follow the thread. Be someone they'd want to talk to again — not someone trying to \"get the close.\""
             },
             {
-                title: "Great reps don't pitch more — they clarify better",
                 text: "The best closers are not louder, faster, or pushier. They're better at clarifying the prospect's needs. They summarize insightfully. They say things like, \"So what I'm hearing is X. Is that right?\" And suddenly the buyer feels understood. That's the close."
             },
             {
-                title: "Your deck should be the chorus, not the solo",
                 text: "A strong deck supports your narrative but doesn't drive it. Use it to underline — not lead. If you lean on it too hard, you lose the human advantage. Lead with questions. Let the deck fill in, not take over."
             },
             {
-                title: "If they're ghosting, go back to the pain",
                 text: "Ghosting usually happens when the problem wasn't painful enough or clear enough. Revisit the stakes. Ask: \"Is this still a priority on your side?\" or \"Has the situation changed?\" Respect their time — but don't disappear yourself."
             },
             {
-                title: "Pushy follow-up sounds like pressure. Thoughtful follow-up sounds like partnership",
                 text: "Replace \"Just checking in\" with \"Wanted to share this article you might find helpful on [their problem].\" Be the one adding value even when they're slow to respond."
             },
             {
-                title: "If you don't know their buying process, you're guessing",
                 text: "Ask directly: \"What does the decision-making process look like on your end?\" It's not pushy — it's professional. Skipping this is the fast track to stalled deals."
             },
             {
-                title: "Confidence is contagious — and so is anxiety",
                 text: "The way you speak, hold silence, and move through objections teaches your buyer how to feel about you. Be calm. Be clear. And if you don't know the answer? Say, \"Let me find out and get back to you today.\" That's strength too."
             },
             {
-                title: "Solve one specific problem. Not five",
                 text: "Don't try to be everything. Show them the single, painful, costly thing you solve — and why that's worth prioritizing. People don't buy \"nice to haves,\" they buy relief."
             },
             {
-                title: "If your language is fluffy, your sale will be too",
                 text: "Buzzwords don't close deals. Precision does. Instead of \"We drive meaningful engagement through scalable solutions,\" try \"We help reduce back-and-forth by automating follow-ups, saving 4–6 hours weekly per team member.\""
             },
             {
-                title: "Define success in their words, not yours",
                 text: "Ask: \"If this worked perfectly, what would that look like on your end?\" Tie every future conversation to that vision. That's the outcome they'll fight for — not your features."
             },
             {
-                title: "Be the most useful person they talk to this week",
                 text: "Before every interaction, ask yourself: \"How can I make this worth their time, even if they don't buy?\" The long game always wins."
             },
             {
-                title: "Position yourself as a guide, not the hero",
                 text: "They're already the protagonist. You're just the shortcut to their success. Stop trying to \"win\" the call — help them win. The energy shift is game-changing."
             },
             {
-                title: "If there's no momentum, create a decision",
                 text: "Don't linger in the gray. If they've gone cold, try: \"I don't want to clog your inbox — should I close this out for now?\" Clarity beats slow death."
             },
             {
-                title: "Speak to the human behind the title",
                 text: "That Head of Ops might be scared of failing. That VP might want a promotion. That founder might be burned out. People buy emotionally — even in B2B. Know what really drives them."
             },
             {
-                title: "Every recap email is a second impression",
                 text: "Send one right after your call. Make it specific, helpful, and memorable. Include: what you heard, what's next, and how to reach you. 70% of reps don't do this. Be the one who does."
             },
             {
-                title: "Follow-up like a friend, not a drip campaign",
                 text: "Would you respond to what you're sending? No? Then don't send it. Real language wins. \"Hey — I know you're juggling a lot. Want me to resend the info in a shorter version?\""
             },
             {
-                title: "Talk less, confirm more",
                 text: "Use phrases like \"Is that still accurate?\" or \"Would that solve the thing you mentioned last time?\" Listening is a sales skill most overlook. Lean into it."
             },
             {
-                title: "Use objections to deepen the convo, not deflect it",
                 text: "Objections = engagement. Instead of panicking, get curious. \"Totally fair — can I ask what makes that important for you?\" You'll either unblock the deal or learn something vital."
             },
             {
-                title: "Book the next step before you hang up",
                 text: "Leaving it open-ended? Risky. Even if it's \"Let's check back next month,\" schedule it. \"Want to lock something in for after your launch — say, the week of August 5th?\""
             },
             {
-                title: "Pacing matters more than pressure",
                 text: "You don't have to \"close hard.\" You do have to move steadily. Think progress, not push. \"We're here now — what's a good next step to keep things moving?\""
             },
             {
-                title: "Be an expert, not an order-taker",
                 text: "If something won't serve them well, say so. \"Honestly, I think the other plan may be a better fit based on what you've shared.\" Long-term trust > short-term close."
             },
             {
-                title: "Keep emails scannable",
                 text: "People skim. Use bold headers. Bullet points. One-line insights. Make it easy to say yes."
             },
             {
-                title: "Make every buyer feel smart and safe",
                 text: "Buying is risky. Reassure them with case studies, proof, clear answers, and a vibe that says, \"I've got you.\" That's how you win deals and advocates."
             },
             {
-                title: "When stuck, return to the pain",
                 text: "Reignite urgency with questions like: \"Last time we spoke, you mentioned [X]. Is that still creating friction for the team?\" Pain is the deal's fuel."
             },
             {
-                title: "Rejection is tuition",
                 text: "Every lost deal is a lesson. Was it timing? Fit? Priority? Process? Debrief yourself. The reps who grow fastest are the ones who treat every no like data, not drama."
             }
         ];
@@ -332,7 +302,6 @@ class CRMManager {
         const tipIndex = dayOfYear % this.salesTips.length;
         const tip = this.salesTips[tipIndex];
         
-        document.getElementById('salesTipTitle').textContent = tip.title;
         document.getElementById('salesTipText').textContent = tip.text;
     }
 
@@ -902,48 +871,6 @@ class CRMManager {
             });
         });
 
-        // Add deal action button handlers
-        dealsList.querySelectorAll('.deal-save-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const dealId = btn.dataset.dealId;
-                this.handleCardSave(dealId);
-            });
-        });
-
-        dealsList.querySelectorAll('.deal-delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const dealId = btn.dataset.dealId;
-                this.handleCardDelete(dealId);
-            });
-        });
-    }
-
-    // Handle card-level save action
-    handleCardSave(dealId) {
-        const dealElement = document.querySelector(`[data-deal-id="${dealId}"]`);
-        if (dealElement) {
-            dealElement.classList.add('collapsing');
-            setTimeout(() => {
-                // Save operation would go here
-                // For now, just re-render to remove the collapsed card
-                this.renderDeals();
-            }, 500);
-        }
-    }
-
-    // Handle card-level delete action
-    handleCardDelete(dealId) {
-        if (confirm('Are you sure you want to delete this deal?')) {
-            const dealElement = document.querySelector(`[data-deal-id="${dealId}"]`);
-            if (dealElement) {
-                dealElement.classList.add('collapsing');
-                setTimeout(() => {
-                    this.deleteDeal(dealId);
-                }, 500);
-            }
-        }
     }
 
     setupDragAndDrop(dealItem) {

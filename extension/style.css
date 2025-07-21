@@ -576,7 +576,7 @@ body {
 /* Deals list */
 .deals-list {
     display: grid;
-    grid-row-gap: 48px;
+    grid-row-gap: 24px;
     align-items: flex-start;
 }
 
@@ -584,6 +584,7 @@ body {
     background: var(--bg-primary);
     border: 1px solid var(--border-color);
     padding: 16px;
+    margin-bottom: 24px;
     cursor: grab;
     border-radius: 12px;
     transition: all 0.2s ease-in-out;
@@ -719,76 +720,6 @@ body {
     opacity: 0.6;
 }
 
-/* Deal Actions */
-.deal-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid var(--border-color);
-    justify-content: flex-end;
-}
-
-.deal-action-btn {
-    padding: 6px 12px;
-    border: 1px solid var(--border-light);
-    border-radius: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    font-family: inherit;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    transition: all 0.3s ease-in-out;
-}
-
-.deal-action-btn:hover {
-    background: var(--bg-tertiary);
-}
-
-.deal-save-btn {
-    background: var(--text-primary) !important;
-    color: var(--bg-primary) !important;
-    border-color: var(--text-primary) !important;
-}
-
-.deal-save-btn:hover {
-    opacity: 0.8 !important;
-}
-
-.deal-delete-btn {
-    color: #d32f2f !important;
-    border-color: #d32f2f !important;
-}
-
-.deal-delete-btn:hover {
-    background: #ffebee !important;
-}
-
-/* Card collapse animation */
-.deal-item.collapsing {
-    animation: collapseCard 0.5s ease-in-out forwards;
-    pointer-events: none;
-}
-
-@keyframes collapseCard {
-    0% {
-        opacity: 1;
-        transform: scale(1);
-        max-height: 500px;
-    }
-    50% {
-        opacity: 0.5;
-        transform: scale(0.95);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(0.9);
-        max-height: 0;
-        margin: 0;
-        padding: 0;
-    }
-}
-
 /* Motivation Panel - soft design */
 .motivation-panel {
     width: 300px;
@@ -826,21 +757,14 @@ body {
     font-size: 14px;
     color: #333333;
     line-height: 1.5;
-    padding-top: 24px;
-    border-top: 1px solid rgba(0,0,0,0.2);
+    padding-top: 0;
+    border-top: none;
     transition: all 0.3s ease-in-out;
-}
-
-.sales-tip-title {
-    font-weight: 600;
-    color: #000000;
-    margin-bottom: 12px;
-    transition: color 0.3s ease-in-out;
 }
 
 /* Motivational Message Box - Glassmorphism */
 .motivational-message-box {
-    margin-top: 24px;
+    margin-bottom: 24px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -865,6 +789,8 @@ body {
 .motivational-message-text {
     font-size: 14px;
     color: #000000;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
     line-height: 1.5;
     font-style: italic;
     transition: all 0.3s ease-in-out;
