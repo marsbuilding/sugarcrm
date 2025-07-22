@@ -254,6 +254,36 @@ class CRMManager {
         this.saveTheme();
     }
 
+    // Audio functionality for cash icon
+    playCashSound() {
+        try {
+            // Create audio element for cash sound
+            const audio = new Audio();
+            
+            // Use a cash register sound effect (placeholder URL - in production, use local file)
+            // For now, using a simple beep sound that works cross-browser
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Cash register-like sound frequencies
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+            oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.2);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.3);
+        } catch (error) {
+            console.log('Audio not supported or failed to play:', error);
+        }
+    }
+
     showLoadingScreen() {
         const progressFill = document.getElementById('progressFill');
         

@@ -840,18 +840,6 @@ body {
     }
 }
 
-/* Hover effect for message box */
-.motivational-message-box:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="dark"] .motivational-message-box:hover {
-    background: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
-}
-
 /* Task Management in Forms */
 .task-input-container {
     display: flex;
